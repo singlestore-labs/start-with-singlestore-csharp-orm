@@ -1,0 +1,10 @@
+﻿{
+  "profiles": {
+    "SingleStoreORM": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "DOTNET_ENVIRONMENT": "Development"
+      }
+    }
+  }
+}
