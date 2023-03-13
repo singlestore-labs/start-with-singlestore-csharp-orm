@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using System;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.EntityFrameworkCore;
 using SingleStoreORM.Models;
@@ -17,10 +18,12 @@ namespace SingleStoreORM
 		// This method gets called by the runtime. Use this method to add services to the container.
 		public void ConfigureServices(IServiceCollection services)
 		{
-			string connstr = Configuration.GetConnectionString("DefaultConnection");
+			string connectionString = Configuration.GetConnectionString("DefaultConnection");
+			var serverVersion = new SingleStoreServerVersion(new Version(7, 8, 0));
+			
 			services.AddHostedService<Worker>();
 			services.AddDbContext<AcmeDataContext>(options =>
-				options.UseMySQL(connstr));
+				options.UseSingleStore(connectionString, serverVersion));
 		}
 
 	}
