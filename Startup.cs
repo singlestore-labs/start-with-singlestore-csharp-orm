@@ -19,11 +19,10 @@ namespace SingleStoreORM
 		public void ConfigureServices(IServiceCollection services)
 		{
 			string connectionString = Configuration.GetConnectionString("DefaultConnection");
-			var serverVersion = new SingleStoreServerVersion(new Version(7, 8, 0));
 			
 			services.AddHostedService<Worker>();
 			services.AddDbContext<AcmeDataContext>(options =>
-				options.UseSingleStore(connectionString, serverVersion));
+				options.UseSingleStore(connectionString));
 		}
 
 	}
